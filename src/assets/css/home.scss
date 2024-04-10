@@ -36,3 +36,15 @@
 .card {
   padding: 2em;
 }
+
+.posts-list {
+  display: grid;
+  padding: 0;
+  gap: 1rem;
+  list-style: none;
+  grid-template-columns: repeat(4, 1fr);
+
+  li {
+    padding: 1rem;
+  }
+}

@@ -20,5 +20,13 @@ export default antfu({
       multilineDetection: 'brackets',
     }],
     'antfu/top-level-function': ['off'],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        ignoreRestSiblings: true,
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
   },
 });
