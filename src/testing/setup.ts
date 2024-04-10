@@ -2,6 +2,15 @@ import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
 
+beforeEach(async () => {
+  vi.clearAllMocks();
+  vi.useRealTimers();
+});
+
+afterEach(() => {
+  vi.useFakeTimers();
+});
+
 const localStorageMock = (() => {
   let store: Record<string, unknown> = {};
 

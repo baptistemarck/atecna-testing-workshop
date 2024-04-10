@@ -19,14 +19,18 @@ export const Home = () => {
     queryFn: () => apiPosts.getPosts(),
     enabled: true,
   });
-
   const posts = getResponseData(data);
 
-  if (isFetching)
-    return <>Ça charge...</>;
+  const hasNoPostYet = posts?.length === 0;
+
+  if (hasNoPostYet)
+    return <>Aucun post</>;
 
   if (isError)
     return <>Ça a merdé...</>;
+
+  if (isFetching)
+    return <>Ça charge...</>;
 
   return (
     <>
