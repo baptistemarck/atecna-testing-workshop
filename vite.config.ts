@@ -12,7 +12,7 @@ export default defineConfig({
     port: 4300,
     host: true,
   },
-  plugins: [react()],
+  // plugins: [react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
