@@ -1,5 +1,4 @@
 import { screen, waitFor } from '@testing-library/react';
-import type { Mocked } from 'vitest';
 import type { AxiosResponse } from 'axios';
 import { userEvent } from '@testing-library/user-event';
 import { Home } from './Home';
@@ -21,7 +20,7 @@ describe('home', () => {
   });
 
   it('should fetch posts and not retrieve any. Sad', async () => {
-    (apiPosts as Mocked<typeof apiPosts>).getPosts.mockResolvedValueOnce({ data: [] } as AxiosResponse<PostType[]>);
+    vi.mocked(apiPosts).getPosts.mockResolvedValueOnce({ data: [] } as AxiosResponse<PostType[]>);
     render(<Home />);
     expect(screen.getByText(/ça charge/i)).toBeInTheDocument();
     await waitFor(() => {
@@ -31,7 +30,7 @@ describe('home', () => {
   });
 
   it('should fail to retrieve posts. So sad', async () => {
-    (apiPosts as Mocked<typeof apiPosts>).getPosts.mockRejectedValueOnce(Error('Fail'));
+    vi.mocked(apiPosts).getPosts.mockRejectedValueOnce(Error('Fail'));
     render(<Home />);
     await waitFor(() => {
       expect(screen.getByText(/ça a merdé/i)).toBeInTheDocument();
