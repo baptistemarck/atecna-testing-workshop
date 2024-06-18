@@ -1,0 +1,26 @@
+.cover img {
+  margin: 0 auto;
+  width: auto;
+  max-height: 25vw;
+}
+
+.col-left.cover,
+.col-right.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.col-left,
+.col-right {
+  padding-inline: 2rem;
+}
+
+ul li {
+  font-size: .75rem;
+}
+
+h4:not(:first-child),
+h5:not(:first-child) {
+  margin-top: 1rem;
+}
