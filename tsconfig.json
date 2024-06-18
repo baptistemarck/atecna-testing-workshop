@@ -10,7 +10,8 @@
     /* Bundler mode */
     "moduleResolution": "bundler",
     "paths": {
-      "@/*": ["src/*"]
+      "~/*": ["/*"],
+      "@appli/*": ["src/*"]
     },
     "resolveJsonModule": true,
     "types": ["vite/client", "vitest/globals", "vitest", "node", "@testing-library/jest-dom"],

@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import reactLogo from '@/assets/react.svg';
+import reactLogo from '@appli/assets/react.svg';
 import viteLogo from '/vite.svg';
-import '@/assets/css/home.scss';
-import { apiPosts } from '@/api/posts';
-import { getResponseData } from '@/api/common/callApi';
+import '@appli/assets/css/home.scss';
+import { apiPosts } from '@appli/api/posts';
+import { getResponseData } from '@appli/api/common/callApi';
+import MyButton from "@appli/components/MyButton.tsx";
 
 export const Home = () => {
   const [count, setCount] = useState(0);
@@ -40,11 +41,11 @@ export const Home = () => {
       </div>
       <h1>Vite !</h1>
       <div className="card">
-        <button onClick={() => setCount(count => count + 1)}>
+        <MyButton onClick={() => setCount(count => count + 1)}>
           count is
           {' '}
           {count}
-        </button>
+        </MyButton>
       </div>
       <ul className="posts-list">
         {posts?.map(post => (

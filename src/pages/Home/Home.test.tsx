@@ -1,17 +1,21 @@
-import { screen, waitFor } from '@testing-library/react';
-import type { Mocked } from 'vitest';
-import type { AxiosResponse } from 'axios';
-import { userEvent } from '@testing-library/user-event';
-import { Home } from './Home';
-import { getButton, renderWithProviders as render } from '@/testing';
-import { mockPost } from '@/mocks';
-import { apiPosts } from '@/api/posts';
-import type { PostType } from '@/types';
+import {screen, waitFor} from '@testing-library/react';
+import type {Mocked} from 'vitest';
+import type {AxiosResponse} from 'axios';
+import {userEvent} from '@testing-library/user-event';
+import {Home} from './Home';
+import {getButton, renderWithProviders as render} from '@appli/testing';
+import {mockPost} from '@appli/mocks';
+import {apiPosts} from '@appli/api/posts';
+import type {PostType} from '@appli/types';
+import {Button} from "@mui/material";
 
-vi.mock('@/api/posts');
+vi.mock('@appli/api/posts');
+vi.mock('@mui/material');
 
 describe('home', () => {
   it('should fetch and display posts', async () => {
+    (Button as Mocked<typeof Button>).mockImplementation(() => <p>Toto</p>)
+
     render(<Home />);
     expect(screen.getByText(/ça charge/i)).toBeInTheDocument();
     await waitFor(() => {

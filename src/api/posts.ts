@@ -1,6 +1,6 @@
 import { environment } from '../environments';
 import { getRequestBuilder, patchRequestBuilder, postRequestBuilder, processCall } from './common/callApi';
-import type { PostType } from '@/types';
+import type { PostType } from '@appli/types';
 
 const baseUrl = environment.apiUrl;
 
