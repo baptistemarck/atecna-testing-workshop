@@ -1,5 +1,4 @@
 import {screen, waitFor} from '@testing-library/react';
-import type {Mocked} from 'vitest';
 import type {AxiosResponse} from 'axios';
 import {userEvent} from '@testing-library/user-event';
 import {Home} from './Home';
@@ -14,18 +13,18 @@ vi.mock('@mui/material');
 
 describe('home', () => {
   it('should fetch and display posts', async () => {
-    (Button as Mocked<typeof Button>).mockImplementation(() => <p>Toto</p>)
-
+    vi.mocked(Button).mockImplementation((props) => <button {...props}></button>)
     render(<Home />);
     expect(screen.getByText(/ça charge/i)).toBeInTheDocument();
     await waitFor(() => {
       expect(screen.getByText(mockPost.title)).toBeInTheDocument();
     });
     expect(screen.getAllByRole('listitem')).toHaveLength(3);
+    screen.debug();
   });
 
   it('should fetch posts and not retrieve any. Sad', async () => {
-    (apiPosts as Mocked<typeof apiPosts>).getPosts.mockResolvedValueOnce({ data: [] } as AxiosResponse<PostType[]>);
+    vi.mocked(apiPosts).getPosts.mockResolvedValueOnce({ data: [] } as AxiosResponse<PostType[]>);
     render(<Home />);
     expect(screen.getByText(/ça charge/i)).toBeInTheDocument();
     await waitFor(() => {
@@ -35,7 +34,7 @@ describe('home', () => {
   });
 
   it('should fail to retrieve posts. So sad', async () => {
-    (apiPosts as Mocked<typeof apiPosts>).getPosts.mockRejectedValueOnce(Error('Fail'));
+    vi.mocked(apiPosts).getPosts.mockRejectedValueOnce(Error('Fail'));
     render(<Home />);
     await waitFor(() => {
       expect(screen.getByText(/ça a merdé/i)).toBeInTheDocument();
